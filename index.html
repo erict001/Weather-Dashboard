@@ -7,29 +7,44 @@
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<body class="row">
     <header>
-        <h1>Weather Dashboard</h1>
+        <h1 id="dashboard">Weather Dashboard</h1>
     </header>
-    <aside>
-    <div>
-        <h1>Search for a City:</h1>
-        <input id="user-input" type="city-search" placeholder="Seattle">
-        <button id="search-input">Search</button>
-        <div>
+    <aside id="aside">
+        <div class="col-3 aside">
+            <h1 for="city" class="form-label" id="searchBox">Search for a city:</h1>
+            <input type="text" class="form-control" id="cityInput">
+            <br>
+            <button type="submit" class="btn btn-primary" id="searchBtn">Search</button>
             <ul class="col-8 mb-3"></ul>
-        </div>
+          </div>
     </div>
     </aside>
-    <section>
-        <div class="card col-12 grey">
+    <section id="main">
+        <div class="card col-9 grey">
             <h1 id="city"></h1>
             <p id="temperature"></p>
             <p id="wind-speed"></p>
             <p id="humidity"></p>
             <p id="uv-index"></p>
         </div>
+        <div>
+            <h1 id="forecast"></h1>
+            <h3 id="forecast-dates"></h3>
+            <p id="forecast-temperature"></p>
+            <p id="forecast-wind-speed"></p>
+            <p id="forecast-humidity"></p>
+        </div>
+        <div>
+            <h1 id="forecast1"></h1>
+            <h3 id="forecast-dates1"></h3>
+            <p id="forecast-temperature1"></p>
+            <p id="forecast-wind-speed1"></p>
+            <p id="forecast-humidity1"></p>
+        </div>
     </section>
     <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 </body>
 </html>

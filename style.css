@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    vertical-align: center;
+    height: 13vh;
+    background: linear-gradient(90deg, blue, rgb(45, 1, 45));
+    color: white
+}
+
+header h1 {
+    padding-top: 3%;
+}
+
+aside {
+    width: 30%;
+}
+
+.aside {
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
