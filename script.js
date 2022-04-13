@@ -6,6 +6,7 @@ var windSpeedEl = document.querySelector('#wind-speed');
 var humidityEl = document.querySelector('#humidity');
 var uvEl = document.querySelector('#uv-index');
 var ApiKey = "fa7d52ba051ca9699cdf472c349d267c";
+var historyEl = document.querySelector("#history")
 
 
 //dates
@@ -55,13 +56,23 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
         var today = moment(unixTime).format("M/D/YYYY")
 
         localCityEl.textContent = data.name + " " + today;
-        temperatureEl.textContent = "Temp: " + data.main.temp + " deg C";
         windSpeedEl.textContent = "Wind: " + data.wind.speed + " MPH";
         humidityEl.textContent = "Humidity: " + data.main.humidity + " %";
 
-        var lat = data.coord.lat
-        var lon = data.coord.lon
 
+    //fetch Temp data for Farheinheit
+        return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city.value + "&appid=" + ApiKey + "&units=imperial")
+      }) .then(function (response) {
+          return response.json();
+      })  
+      .then (function (tempData) {
+      console.log(tempData)
+      temperatureEl.textContent = "Temp: " + tempData.main.temp + " deg F";
+
+        var lat = tempData.coord.lat
+        var lon = tempData.coord.lon
+
+    //fetch data for UV Index
       return fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly,daily&appid=" + ApiKey)
       }) .then(function (response) {
           return response.json();
@@ -69,6 +80,15 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
       .then (function (data1) {
       console.log(data1)
       uvEl.textContent = "UV Index: " + data1.current.uvi
+
+        if (data1.current.uvi < 4) {
+          uvEl.setAttribute("class", "badge badge-success")
+        } else if (data1.current.uvi < 8) {
+          uvEl.setAttribute("class", "badge badge-warning")
+        } else {
+          uvEl.setAttribute("class", "badge-badge-danger");
+        }
+      
 
       var lat1 = data1.lat;
       var lon1 = data1.lon;
@@ -128,8 +148,9 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
       forecast4TempEl.textContent = "Temp: " + forecastData.list[39].main.temp + " deg C"
       forecast4WindEl.textContent = "Wind: " + forecastData.list[39].wind.speed + "MPH"
       forecast4HumidityEl.textContent = "Humidity: " + forecastData.list[39].main.humidity + " %"
-      });
-
-    };
+     
+  
+    });
+  };
   
     searchBtn.addEventListener('click', apiParameters);
