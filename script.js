@@ -7,8 +7,10 @@ var humidityEl = document.querySelector('#humidity');
 var uvEl = document.querySelector('#uv-index');
 var ApiKey = "fa7d52ba051ca9699cdf472c349d267c";
 
+
+//dates
+
 //forecast data
-var forecastEl = document.getElementById("forecast")
 var forecastDatesEl = document.getElementById("forecast-dates")
 var forecastTempEl = document.getElementById("forecast-temperature")
 var forecastWindEl = document.getElementById("forecast-wind-speed")
@@ -47,11 +49,15 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
         return getApi.json();
       })
       .then(function (data) {
-        console.log(data)
-        localCityEl.textContent = data.name;
-        temperatureEl.textContent = data.main.temp + " deg C";
-        windSpeedEl.textContent = data.wind.speed + " MPH";
-        humidityEl.textContent = data.main.humidity + " %";
+        document.querySelector("#forecast").classList.remove("hide")
+
+        var unixTime = data.dt * 1000
+        var today = moment(unixTime).format("M/D/YYYY")
+
+        localCityEl.textContent = data.name + " " + today;
+        temperatureEl.textContent = "Temp: " + data.main.temp + " deg C";
+        windSpeedEl.textContent = "Wind: " + data.wind.speed + " MPH";
+        humidityEl.textContent = "Humidity: " + data.main.humidity + " %";
 
         var lat = data.coord.lat
         var lon = data.coord.lon
@@ -62,48 +68,68 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
       })  
       .then (function (data1) {
       console.log(data1)
-      uvEl.textContent = data1.current.uvi
+      uvEl.textContent = "UV Index: " + data1.current.uvi
 
       var lat1 = data1.lat;
       var lon1 = data1.lon;
-
+      
+      // 5 Day Forecast
       return fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat1 + "&lon=" + lon1 + "&appid=" + ApiKey)
       }) .then(function (forecast) {
           return forecast.json();
       })  
       .then (function (forecastData) {
       console.log(forecastData)
-      for (var i = 0; i < forecastData.list[i]; i + 8)
-      forecastEl.textContent = forecastData.city.name
-      forecastTempEl.textContent = forecastData.list[0].main.temp + " deg C"
-      forecastWindEl.textContent = forecastData.list[0].wind.speed + " MPH"
-      forecastHumidityEl.textContent = forecastData.list[0].main.humidity + " %"
 
-      forecast1TempEl.textContent = forecastData.list[1].main.temp + " deg C"
-      forecast1WindEl.textContent = forecastData.list[1].wind.speed + "MPH"
-      forecast1HumidityEl.textContent = forecastData.list[1].main.humidity + " %"
+      //tomorrow date
+      var unixTomorrow = (forecastData.list[0].dt_txt)
+      var tomorrow = moment(unixTomorrow).format("M/D/YYYY")
+
+      //2nd day date
+      var unixSecond = (forecastData.list[8].dt_txt)
+      var secondDay = moment(unixSecond).format("M/D/YYYY")
+
+      //3rd day date
+      var unixThird = (forecastData.list[16].dt_txt)
+      var thirdDay = moment(unixThird).format("M/D/YYYY")
+
+      //4th day
+      var unixFourth = (forecastData.list[24].dt_txt)
+      var fourthDay = moment(unixFourth).format("M/D/YYYY")
+
+      //5th day
+      var unixFifth = (forecastData.list[32].dt_txt)
+      var fifthDay = moment(unixFifth).format("M/D/YYYY")
+
+
+      for (var i = 8; i < forecastData.list[i]; i + 8);
+
+      forecastDatesEl.textContent = tomorrow;
+      forecastTempEl.textContent = "Temp: " + forecastData.list[8].main.temp + " deg C"
+      forecastWindEl.textContent = "Wind: " + forecastData.list[8].wind.speed + " MPH"
+      forecastHumidityEl.textContent = "Humidity: " + forecastData.list[8].main.humidity + " %"
+
+      forecast1DatesEl.textContent = secondDay;
+      forecast1TempEl.textContent = "Temp: " + forecastData.list[16].main.temp + " deg C"
+      forecast1WindEl.textContent = "Wind: " + forecastData.list[16].wind.speed + "MPH"
+      forecast1HumidityEl.textContent = "Humidity: " + forecastData.list[16].main.humidity + " %"
       
-      forecast2TempEl.textContent = forecastData.list[1].main.temp + " deg C"
-      forecast2WindEl.textContent = forecastData.list[1].wind.speed + "MPH"
-      forecast2HumidityEl.textContent = forecastData.list[1].main.humidity + " %"
+      forecast2DatesEl.textContent = thirdDay;
+      forecast2TempEl.textContent = "Temp: " + forecastData.list[24].main.temp + " deg C"
+      forecast2WindEl.textContent = "Wind: " + forecastData.list[24].wind.speed + "MPH"
+      forecast2HumidityEl.textContent = "Humidity: " + forecastData.list[24].main.humidity + " %"
 
-      forecast3TempEl.textContent = forecastData.list[1].main.temp + " deg C"
-      forecast3WindEl.textContent = forecastData.list[1].wind.speed + "MPH"
-      forecast3HumidityEl.textContent = forecastData.list[1].main.humidity + " %"
+      forecast3DatesEl.textContent = fourthDay;
+      forecast3TempEl.textContent = "Temp: " + forecastData.list[32].main.temp + " deg C"
+      forecast3WindEl.textContent = "Wind: " + forecastData.list[32].wind.speed + "MPH"
+      forecast3HumidityEl.textContent = "Humidity: " + forecastData.list[32].main.humidity + " %"
 
-      forecast4TempEl.textContent = forecastData.list[1].main.temp + " deg C"
-      forecast4WindEl.textContent = forecastData.list[1].wind.speed + "MPH"
-      forecast4HumidityEl.textContent = forecastData.list[1].main.humidity + " %"
-
-
+      forecast4DatesEl.textContent = fifthDay;
+      forecast4TempEl.textContent = "Temp: " + forecastData.list[39].main.temp + " deg C"
+      forecast4WindEl.textContent = "Wind: " + forecastData.list[39].wind.speed + "MPH"
+      forecast4HumidityEl.textContent = "Humidity: " + forecastData.list[39].main.humidity + " %"
       });
+
     };
   
     searchBtn.addEventListener('click', apiParameters);
-
-    3902868265
-
-
-
-
-    727-567-2495
