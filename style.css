@@ -16,7 +16,7 @@ header h1 {
 }
 
 .container {
-    width: 30vw;
+    width: 15vw;
     padding-left: 10px;
     padding-top: 10px;
 }
@@ -32,24 +32,40 @@ header h1 {
 
 .results {
     margin-left: 20vw;
+    margin-top: -10vw;
 }
 
 .card {
     display: inline-block;
-    height: 200px;
-    width: 150px;
+    height: 20vh;
+    width: 15vw;
     border: 1px black solid;
     background-color: rgb(22, 41, 73);
     color: white
 }
 
-.good {
+.green {
     background-color: green;
     color: white;
     height: 20px;
-    width: 20px;
+    width: 120px;
     border: 1px solid black;
 }
+.yellow {
+    background-color: green;
+    color: white;
+    height: 20px;
+    width: 120px;
+    border: 1px solid black;
+}
+.red {
+    background-color: green;
+    color: white;
+    height: 20px;
+    width: 120px;
+    border: 1px solid black;
+}
+
 
 
 .card p {

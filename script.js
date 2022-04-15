@@ -9,7 +9,8 @@ var ApiKey = "fa7d52ba051ca9699cdf472c349d267c";
 var historyEl = document.querySelector("#history")
 
 
-//dates
+//searches
+var pastSearches = []
 
 //forecast data
 var forecastDatesEl = document.getElementById("forecast-dates")
@@ -42,7 +43,7 @@ var forecast4WindEl = document.getElementById("forecast-wind-speed4")
 var forecast4HumidityEl = document.getElementById("forecast-humidity4")
 
 
-  // search for city and other data
+  // CITY DATA
   function apiParameters() {
     let queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city.value + "&appid=" + ApiKey; 
       fetch(queryURL)
@@ -55,12 +56,14 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
         var unixTime = data.dt * 1000
         var today = moment(unixTime).format("M/D/YYYY")
 
-        localCityEl.textContent = data.name + " " + today;
-        windSpeedEl.textContent = "Wind: " + data.wind.speed + " MPH";
-        humidityEl.textContent = "Humidity: " + data.main.humidity + " %";
-
-
-    //fetch Temp data for Farheinheit
+      localCityEl.textContent = data.name + " " + today;
+      windSpeedEl.textContent = "Wind: " + data.wind.speed + " MPH";
+      humidityEl.textContent = "Humidity: " + data.main.humidity + " %";
+      
+      localStorage.setItem("city", JSON.stringify(data.name))
+      pastSearches.push(...data.name)
+      
+      //fetch Temp data for Farheinheit
         return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city.value + "&appid=" + ApiKey + "&units=imperial")
       }) .then(function (response) {
           return response.json();
@@ -82,11 +85,11 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
       uvEl.textContent = "UV Index: " + data1.current.uvi
 
         if (data1.current.uvi < 4) {
-          uvEl.setAttribute("class", "badge badge-success")
+          uvEl.classList.add("green")
         } else if (data1.current.uvi < 8) {
-          uvEl.setAttribute("class", "badge badge-warning")
+          uvEl.classList.add(".yellow")
         } else {
-          uvEl.setAttribute("class", "badge-badge-danger");
+          uvEl.classList.add("red");
         }
       
 
@@ -102,23 +105,23 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
       console.log(forecastData)
 
       //tomorrow date
-      var unixTomorrow = (forecastData.list[0].dt_txt)
+      var unixTomorrow = (forecastData.list[1].dt_txt)
       var tomorrow = moment(unixTomorrow).format("M/D/YYYY")
 
       //2nd day date
-      var unixSecond = (forecastData.list[8].dt_txt)
+      var unixSecond = (forecastData.list[9].dt_txt)
       var secondDay = moment(unixSecond).format("M/D/YYYY")
 
       //3rd day date
-      var unixThird = (forecastData.list[16].dt_txt)
+      var unixThird = (forecastData.list[18].dt_txt)
       var thirdDay = moment(unixThird).format("M/D/YYYY")
 
       //4th day
-      var unixFourth = (forecastData.list[24].dt_txt)
+      var unixFourth = (forecastData.list[27].dt_txt)
       var fourthDay = moment(unixFourth).format("M/D/YYYY")
 
       //5th day
-      var unixFifth = (forecastData.list[32].dt_txt)
+      var unixFifth = (forecastData.list[36].dt_txt)
       var fifthDay = moment(unixFifth).format("M/D/YYYY")
 
 
@@ -152,5 +155,13 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
   
     });
   };
-  
+
+  //past Searches
+  function saveSearches() {
+    localStorage.getItem("city")
+    pastSearches.push(..."city")
+    console.log(pastSearches)
+  }
+
     searchBtn.addEventListener('click', apiParameters);
+    searchBtn.addEventListener('click', saveSearches);

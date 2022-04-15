@@ -17,7 +17,7 @@
         <h1 id="dashboard">Weather Dashboard</h1>
     </header>
 <div class="container">
-    <div class ="search" id="aside">
+    <div class ="search col-md-3" id="aside">
         <div>
             <h1 for="city" class="form-label" id="searchBox">Search for a city:</h1>
             <br>
@@ -25,13 +25,14 @@
             <br>
             <br>
             <button type="submit" class="btn" id="searchBtn">Search</button>
-
+        </div>
+        <div>
             <ul id="history"></ul>
 
-          </div>
+        </div>
      </div>
 </div>
-    <div class = "results" id="main">
+<div class = "results col-md-9" id="main">
         <div class = "main-results">
                 <h1 id="city"></h1>
                 <br>
@@ -78,7 +79,11 @@
             </div>
      </div>
 </div>
-    <script src="./script.js"></script>
+    <script type="text/javascript" src="./script.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 </body>
 </html>
