@@ -66,9 +66,13 @@ header h1 {
     border: 1px solid black;
 }
 
-
-
 .card p {
     padding-top: 10px;
     padding-left: 10px;
+}
+
+.list {
+    height: 30px;
+    width: 40px;
+    background-color: darkgrey;
 }

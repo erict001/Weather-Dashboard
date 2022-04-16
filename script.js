@@ -6,7 +6,7 @@ var windSpeedEl = document.querySelector('#wind-speed');
 var humidityEl = document.querySelector('#humidity');
 var uvEl = document.querySelector('#uv-index');
 var ApiKey = "fa7d52ba051ca9699cdf472c349d267c";
-var historyEl = document.querySelector("#history")
+var ul = document.querySelector("#history")
 
 
 //searches
@@ -157,10 +157,15 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
 
   //past Searches
   function pushCities() {
-    pastSearches.push(...city.value)
-    localStorage.setItem("city", JSON.stringify(pastSearches))
+    pastSearches.push(city.value)
+    localStorage.setItem("city", pastSearches)
     localStorage.getItem(pastSearches)
-    console.log(JSON.stringify(pastSearches))
+    
+    var li = document.createElement("li");
+    li.classList.add("list")
+    li.appendChild(city.value);
+    ul.appendChild(li);
+
   }
  
     searchBtn.addEventListener('click', apiParameters);
