@@ -60,8 +60,8 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
       windSpeedEl.textContent = "Wind: " + data.wind.speed + " MPH";
       humidityEl.textContent = "Humidity: " + data.main.humidity + " %";
       
-      localStorage.setItem("city", JSON.stringify(data.name))
-      pastSearches.push(...data.name)
+      // localStorage.setItem("city", JSON.stringify(data.name))
+      // pastSearches.push(data.name)
       
       //fetch Temp data for Farheinheit
         return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city.value + "&appid=" + ApiKey + "&units=imperial")
@@ -92,7 +92,6 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
           uvEl.classList.add("red");
         }
       
-
       var lat1 = data1.lat;
       var lon1 = data1.lon;
       
@@ -157,11 +156,12 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
   };
 
   //past Searches
-  function saveSearches() {
-    localStorage.getItem("city")
-    pastSearches.push(..."city")
-    console.log(pastSearches)
+  function pushCities() {
+    pastSearches.push(...city.value)
+    localStorage.setItem("city", JSON.stringify(pastSearches))
+    localStorage.getItem(pastSearches)
+    console.log(JSON.stringify(pastSearches))
   }
-
+ 
     searchBtn.addEventListener('click', apiParameters);
-    searchBtn.addEventListener('click', saveSearches);
+    searchBtn.addEventListener('click', pushCities);
