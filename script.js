@@ -6,6 +6,7 @@ var windSpeedEl = document.querySelector('#wind-speed');
 var humidityEl = document.querySelector('#humidity');
 var uvEl = document.querySelector('#uv-index');
 var ApiKey = "fa7d52ba051ca9699cdf472c349d267c";
+var newCityBtn = document.getElementsByClassName("list")
 
 
 //searches
@@ -154,25 +155,29 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
     });
   };
 
-  searchBtn.addEventListener('click', apiParameters);
-  searchBtn.addEventListener('click', pushCities);
+  
 
 
   //past Searches
   function pushCities() {
-    pastSearches.push(city.value)
-    localStorage.setItem("city", pastSearches)
-    localStorage.getItem(pastSearches)
+    pastSearches.unshift(city.value)
 
-    for (i=0; i<pastSearches.length; i++) {
     var ul = document.querySelector("#history");
-    var li = document.createElement("li");
-    ul.append(li)
-    ul.textContent = pastSearches;
-    console.log(pastSearches)
-    // li.appendChild(pastSearches[i]);
-    // ul.appendChild(li);
-    li.classList.add("list")
-    }
-
+  localStorage.setItem("city", pastSearches)
+  localStorage.getItem(pastSearches[0])
+  var liList = $("history")
+  var li = document.createElement("button");
+  li.textContent = pastSearches[0];
+  liList.append(pastSearches[0])
+  li.classList.add("list")
+  ul.append(li)
   }
+
+
+  function myCityBtn () {
+    var newCityBtn = document.getElementsByClassName("list")
+  }
+
+  searchBtn.addEventListener('click', apiParameters);
+  searchBtn.addEventListener('click', pushCities);
+  newCityBtn.addEventListener('click', apiParameters)
