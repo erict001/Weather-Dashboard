@@ -57,8 +57,8 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
     //Check the event.target.innerHTML
     event.target.innerHTML
     //if that value is equal to Search, we know the user clicked the search button, so we should use city.value in our queryURL
-    if (event.target.className === “list”) {
-      console.log(“hit”)
+    if (event.target.className === "list") {
+      console.log("hit")
     }
     //if that value is something else, we should use event.target.HTML since it will be the city value already clicked
 
@@ -73,14 +73,12 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
 
         var unixTime = data.dt * 1000
         var today = moment(unixTime).format("M/D/YYYY")
+        var weatherIcon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
 
-      localCityEl.textContent = data.name + " " + today + " " + data.weather[0].icon;
+      localCityEl.textContent = data.name + " " + today + " " + weatherIcon;
       windSpeedEl.textContent = "Wind Speed: " + data.wind.speed + " MPH";
       humidityEl.textContent = "Humidity: " + data.main.humidity + " %";
-      
-      // localStorage.setItem("city", JSON.stringify(data.name))
-      // pastSearches.push(data.name)
-      
+            
       //fetch Temp data for Farheinheit
         return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city.value + "&appid=" + ApiKey + "&units=imperial")
       }) .then(function (response) {
