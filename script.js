@@ -73,12 +73,12 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
 
         var unixTime = data.dt * 1000
         var today = moment(unixTime).format("M/D/YYYY")
-        var weatherIcon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
+        var imageElement = document.createElement("img");
 
-      localCityEl.textContent = data.name + " " + today + " " + weatherIcon;
+      localCityEl.textContent = data.name + " " + today + " " + data.weather[0].icon;
       windSpeedEl.textContent = "Wind Speed: " + data.wind.speed + " MPH";
       humidityEl.textContent = "Humidity: " + data.main.humidity + " %";
-            
+
       //fetch Temp data for Farheinheit
         return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city.value + "&appid=" + ApiKey + "&units=imperial")
       }) .then(function (response) {
