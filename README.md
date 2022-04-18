@@ -13,13 +13,6 @@ This page I used:
 
 This project is designed to help users quickly identify the current and forecasted weather for cities around the world. 
 
-![LoadingPage](./maybe%20needed/Screen%20Shot%202022-04-17%20at%207.18.30%20PM.png)
-
-![LoadingPage](./maybe%20needed/Screen%20Shot%202022-04-17%20at%207.18.20%20PM.png)
-
-When a city is searched, today's weather including temperature, wind speed, humidity level, and uv index plus the 5 day forecast with the same features displayed. 
-
-After a city is searched, it gets displayed underneath the search bar. 
 
 ## Points of Interest
 
@@ -41,4 +34,15 @@ I felt successful in pulling API's and successfully displaying multiple features
 I struggled with adding the icons, even though I successfully pulled the correct icon tag. I also, struggled with getting past displays to display on the page. I have the correct event target listener applied so when the button is clicked, the correct city search comes up. I wasn't able to properly get the remaining currenta and future information to display. 
 
 ## Deployed Application
+https://erict001.github.io/Weather-Dashboard/
 
+
+## Usage
+
+When a city is searched, today's weather including temperature, wind speed, humidity level, and uv index plus the 5 day forecast with the same features displayed. 
+
+After a city is searched, it gets displayed underneath the search bar. 
+
+![LoadingPage](./maybe%20needed/Screen%20Shot%202022-04-17%20at%207.18.30%20PM.png)
+
+![LoadingPage](./maybe%20needed/Screen%20Shot%202022-04-17%20at%207.18.20%20PM.png)
