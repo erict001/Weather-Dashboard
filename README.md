@@ -21,6 +21,10 @@ When a city is searched, today's weather including temperature, wind speed, humi
 
 After a city is searched, it gets displayed underneath the search bar. 
 
+## Features
+
+The features that stand out to me is that when I type in an input into the city input box, I successfully grab that value and get all of the relevant information using multiple API pulls both in the current forecast and future forecast. 
+
 ## Successes
 
 I felt successful in pulling API's and successfully displaying multiple features on the same page.

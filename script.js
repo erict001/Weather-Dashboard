@@ -57,8 +57,8 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
     //Check the event.target.innerHTML
     event.target.innerHTML
     //if that value is equal to Search, we know the user clicked the search button, so we should use city.value in our queryURL
-    if (event.target === pastSearches) {
-
+    if (event.target.className === “list”) {
+      console.log(“hit”)
     }
     //if that value is something else, we should use event.target.HTML since it will be the city value already clicked
 
@@ -189,6 +189,7 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
   liList.append(pastSearches[0])
   li.classList.add("list")
   ul.append(li)
+  
 
   li.addEventListener("click", apiParameters)
   }
