@@ -6,7 +6,7 @@
 header {
     text-align: center;
     vertical-align: center;
-    height: 10vh;
+    height: 100px;
     background: linear-gradient(90deg, blue, rgb(45, 1, 45));
     color: white
 }
@@ -52,15 +52,15 @@ header h1 {
     border: 1px solid black;
 }
 .yellow {
-    background-color: green;
-    color: white;
+    background-color: yellow;
+    color: black;
     height: 20px;
     width: 120px;
     border: 1px solid black;
 }
 .red {
-    background-color: green;
-    color: white;
+    background-color: red;
+    color: black;
     height: 20px;
     width: 120px;
     border: 1px solid black;

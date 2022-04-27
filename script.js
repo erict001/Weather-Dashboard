@@ -9,7 +9,7 @@ var ApiKey = "fa7d52ba051ca9699cdf472c349d267c";
 var newCityBtn = document.getElementsByClassName("list")
 var mainIcon = document.getElementById("mainIcon")
 
-var formerCities = JSON.parse(localStorage.getItem("city"))
+var formerCities = JSON.parse(localStorage.getItem(pastSearches))
 
 if (formerCities){
   var pastSearches = formerCities
@@ -184,7 +184,6 @@ var forecast4HumidityEl = document.getElementById("forecast-humidity4")
 
     var ul = document.querySelector("#history");
   localStorage.setItem("city", pastSearches)
-  localStorage.getItem(pastSearches[0])
   var liList = $("history")
   var li = document.createElement("button");
   li.textContent = pastSearches[0];
