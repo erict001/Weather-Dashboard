@@ -9,7 +9,11 @@ var ApiKey = "fa7d52ba051ca9699cdf472c349d267c";
 var newCityBtn = document.getElementsByClassName("list")
 var mainIcon = document.getElementById("mainIcon")
 
+var formerCities = JSON.parse(localStorage.getItem("city"))
 
+if (formerCities){
+  var pastSearches = formerCities
+}
 
 //searches
 var pastSearches = []
